@@ -25,5 +25,9 @@ export class FilmDetailsPage {
   goBack() {
     this.navCtrl.pop();
   }
+
+  someFunction() {
+    
+  }
  
 }
