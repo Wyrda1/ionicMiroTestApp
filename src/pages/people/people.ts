@@ -1,12 +1,7 @@
+import { ApiProvider } from './../../providers/api/api';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the PeoplePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Observable } from 'rxjs/Observable';
 
 @IonicPage()
 @Component({
@@ -15,11 +10,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PeoplePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  people: Observable<any>;
+  constructor(public navCtrl: NavController, public apiProvider: ApiProvider) { 
+    this.people = this.apiProvider.getPeople();
+  }
+ 
+  openDetails(people) {
+    this.navCtrl.push('PeopleDetailsPage', {people: people});
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PeoplePage');
-  }
+  /*openDetails() {
+    this.navCtrl.push('PeopleDetailsPage');
+  } */
+
 
 }

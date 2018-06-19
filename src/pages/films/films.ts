@@ -1,13 +1,7 @@
-
-/**
- * Generated class for the FilmsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
+import { ApiProvider } from './../../providers/api/api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
  
 @IonicPage()
 @Component({
@@ -15,14 +9,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'films.html',
 })
 export class FilmsPage {
+  films: Observable<any>;
  
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
- 
-  openDetails() {
-    this.navCtrl.push('FilmDetailsPage');
+  constructor(public navCtrl: NavController, public apiProvider: ApiProvider) { 
+    this.films = this.apiProvider.getFilms();
   }
  
-  goToPlanets() {
-    this.navCtrl.parent.select(2);
+  openDetails(film) {
+    this.navCtrl.push('FilmDetailsPage', {film: film});
   }
 }
