@@ -10,6 +10,8 @@ import { Observable } from 'rxjs/Observable';
 })
 export class PeoplePage {
 
+  testVar: string="Hallo Welt";
+
   people: Observable<any>;
   constructor(public navCtrl: NavController, public apiProvider: ApiProvider) { 
     this.people = this.apiProvider.getPeople();
